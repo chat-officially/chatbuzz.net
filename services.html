@@ -1,0 +1,617 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChatBuzz Services - Communication Solutions</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Global Styles */
+        :root {
+            --primary: #4361ee;
+            --secondary: #3f37c9;
+            --accent: #4895ef;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --success: #4cc9f0;
+            --warning: #f72585;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: var(--light);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        h1, h2, h3, h4 {
+            font-weight: 700;
+            line-height: 1.2;
+        }
+        
+        /* Navigation - Consistent with other pages */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo i {
+            margin-right: 10px;
+            color: var(--accent);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .nav-links a {
+            font-weight: 600;
+            position: relative;
+            padding: 5px 0;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        /* Services Hero */
+        .services-hero {
+            height: 60vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(rgba(67, 97, 238, 0.8), rgba(63, 55, 201, 0.8)), url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80') no-repeat center center/cover;
+            color: white;
+            text-align: center;
+        }
+        
+        .services-hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .services-hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            animation: fadeInUp 1s ease;
+        }
+        
+        .services-hero p {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            animation: fadeInUp 1.2s ease;
+        }
+        
+        /* Main Services Section */
+        .services-main {
+            padding: 80px 0;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-header h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--accent);
+        }
+        
+        .section-header p {
+            font-size: 1.1rem;
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        
+        .service-card {
+            background-color: white;
+            border-radius: 15px;
+            padding: 40px 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 0;
+            background: linear-gradient(to bottom, var(--primary), var(--accent));
+            transition: height 0.3s ease;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .service-card:hover::before {
+            height: 100%;
+        }
+        
+        .service-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 25px;
+            color: white;
+            font-size: 1.8rem;
+        }
+        
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+        
+        .service-card p {
+            color: #666;
+            margin-bottom: 20px;
+        }
+        
+        .service-features {
+            margin-top: 20px;
+        }
+        
+        .service-features li {
+            margin-bottom: 10px;
+            padding-left: 25px;
+            position: relative;
+            color: #555;
+        }
+        
+        .service-features li::before {
+            content: '\f00c';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+        }
+        
+        /* Benefits Section */
+        .benefits-section {
+            padding: 80px 0;
+            background: linear-gradient(135deg, rgba(67, 97, 238, 0.03), rgba(63, 55, 201, 0.03));
+        }
+        
+        .benefits-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 50px;
+        }
+        
+        .benefits-image {
+            flex: 1;
+            min-width: 300px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .benefits-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .benefits-image:hover img {
+            transform: scale(1.05);
+        }
+        
+        .benefits-content {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .benefits-content h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        
+        .benefits-list {
+            list-style: none;
+        }
+        
+        .benefits-list li {
+            margin-bottom: 25px;
+            padding-left: 60px;
+            position: relative;
+        }
+        
+        .benefit-number {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+        }
+        
+        .benefit-text h3 {
+            font-size: 1.3rem;
+            margin-bottom: 5px;
+            color: var(--dark);
+        }
+        
+        .benefit-text p {
+            color: #666;
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            padding: 80px 0;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            text-align: center;
+        }
+        
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .cta-section p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            opacity: 0.9;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        
+        .cta-buttons .btn {
+            background-color: white;
+            color: var(--primary);
+            padding: 15px 30px;
+            font-size: 1.1rem;
+        }
+        
+        .cta-buttons .btn-outline {
+            background-color: transparent;
+            color: white;
+            border-color: white;
+        }
+        
+        .cta-buttons .btn-outline:hover {
+            background-color: white;
+            color: var(--primary);
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .services-hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .services-hero p {
+                font-size: 1.1rem;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-comment-dots"></i>
+                ChatBuzz
+            </a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="about.html">About Us</a>
+                <a href="services.html" class="active">Services</a>
+                <a href="contact.html">Contact Us</a>
+            </div>
+            <div class="nav-cta">
+                <a href="#" class="btn btn-primary">Get Started</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Services Hero -->
+    <section class="services-hero">
+        <div class="services-hero-content">
+            <h1>Powerful Communication Solutions</h1>
+            <p>Discover how ChatBuzz can transform the way you connect with your team, customers, and community</p>
+        </div>
+    </section>
+
+    <!-- Main Services Section -->
+    <section class="services-main">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Core Services</h2>
+                <p>Comprehensive communication tools designed for businesses of all sizes</p>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <h3>Real-Time Chat</h3>
+                    <p>Instant messaging with ultra-low latency for seamless conversations between individuals and groups.</p>
+                    <ul class="service-features">
+                        <li>Group chats (up to 10,000 participants)</li>
+                        <li>Private 1:1 messaging</li>
+                        <li>Message history and search</li>
+                        <li>Typing indicators and read receipts</li>
+                    </ul>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <h3>Secure Messaging</h3>
+                    <p>Military-grade encryption to protect your sensitive communications from unauthorized access.</p>
+                    <ul class="service-features">
+                        <li>End-to-end encryption</li>
+                        <li>Self-destructing messages</li>
+                        <li>Two-factor authentication</li>
+                        <li>Compliance with GDPR & HIPAA</li>
+                    </ul>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-plug"></i>
+                    </div>
+                    <h3>API Integration</h3>
+                    <p>Powerful API to integrate ChatBuzz functionality into your existing applications and workflows.</p>
+                    <ul class="service-features">
+                        <li>Developer-friendly documentation</li>
+                        <li>Webhooks for real-time updates</li>
+                        <li>SDKs for all major platforms</li>
+                        <li>Dedicated integration support</li>
+                    </ul>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Analytics Dashboard</h3>
+                    <p>Comprehensive metrics and reporting to understand and optimize your communication.</p>
+                    <ul class="service-features">
+                        <li>Real-time activity monitoring</li>
+                        <li>User engagement metrics</li>
+                        <li>Custom report generation</li>
+                        <li>Export to CSV/PDF</li>
+                    </ul>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3>Customer Support</h3>
+                    <p>Embeddable chat widget to provide instant support to your website visitors and customers.</p>
+                    <ul class="service-features">
+                        <li>Customizable widget design</li>
+                        <li>Automated responses</li>
+                        <li>Ticket management</li>
+                        <li>Seamless handoff to human agents</li>
+                    </ul>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <h3>Video Conferencing</h3>
+                    <p>High-quality video calls with screen sharing and collaboration tools built right in.</p>
+                    <ul class="service-features">
+                        <li>Up to 50 participants</li>
+                        <li>Screen sharing</li>
+                        <li>Virtual backgrounds</li>
+                        <li>Meeting recording</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits-section">
+        <div class="container">
+            <div class="benefits-container">
+                <div class="benefits-image">
+                    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Team Collaboration">
+                </div>
+                <div class="benefits-content">
+                    <h2>Why Choose ChatBuzz Services?</h2>
+                    <ul class="benefits-list">
+                        <li>
+                            <div class="benefit-number">1</div>
+                            <div class="benefit-text">
+                                <h3>24/7 Availability</h3>
+                                <p>Our platform provides continuous support anytime, removing the limitations of human working hours.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="benefit-number">2</div>
+                            <div class="benefit-text">
+                                <h3>Instant Responses</h3>
+                                <p>Deliver real-time answers to improve user satisfaction and reduce wait times significantly.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="benefit-number">3</div>
+                            <div class="benefit-text">
+                                <h3>Unmatched Scalability</h3>
+                                <p>Handle thousands of conversations simultaneously—perfect for growing businesses.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="benefit-number">4</div>
+                            <div class="benefit-text">
+                                <h3>Cost Efficiency</h3>
+                                <p>Reduce operational costs by minimizing the need for large human support teams.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="benefit-number">5</div>
+                            <div class="benefit-text">
+                                <h3>Multilingual Support</h3>
+                                <p>Break down language barriers with built-in translation for dozens of languages.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Ready to Transform Your Communication?</h2>
+            <p>Join thousands of businesses that trust ChatBuzz for their communication needs</p>
+            <div class="cta-buttons">
+                <a href="#" class="btn">Start Free Trial</a>
+                <a href="#" class="btn btn-outline">Request Demo</a>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Simple animation on scroll
+        document.addEventListener('DOMContentLoaded', function() {
+            const animateElements = document.querySelectorAll('.service-card, .benefits-list li');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            animateElements.forEach(element => {
+                element.style.opacity = 0;
+                element.style.transform = 'translateY(30px)';
+                element.style.transition = 'all 0.6s ease';
+                observer.observe(element);
+            });
+        });
+    </script>
+</body>
+</html>
